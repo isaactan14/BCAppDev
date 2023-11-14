@@ -107,7 +107,7 @@
 					},
 					{
 						"internalType": "string",
-						"name": "ownerDescription",
+						"name": "propertyDescription",
 						"type": "string"
 					},
 					{
@@ -319,11 +319,11 @@
 	},
 	"sources": {
 		"DecentralisedProperty.sol": {
-			"keccak256": "0x20cb05ec0dc887cfad152c8a8fb36dc8fccc8797a75ebee38866b039408b3d9e",
+			"keccak256": "0x75724d8572008e10868ac424cf2109e03cdb13abb76becc3d570b51d4f804892",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e911c0f0aa591e8268d3606bc081a810367359a3371970f37b88e58d00db8b9f",
-				"dweb:/ipfs/QmNigxZAp2TYBShiRni6EhsTK7T2mdoCv7LZFMF3shJFvU"
+				"bzz-raw://3b94cd6c98c01806354d0d2f175ed096e6ad1a258e73d1c9e919940a279ea196",
+				"dweb:/ipfs/QmPTPZRCQiVoagzhfLvfLSG24kyXi289SJjgeJysCaFppy"
 			]
 		}
 	},

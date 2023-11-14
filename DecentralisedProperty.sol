@@ -47,14 +47,14 @@ contract DecentralisedProperty {
     }
 
     //A function to add a property to the listing, taking in 3 arguments. Property owner can call this function.
-    function addProperty(string memory ownerName, string memory ownerDescription, uint askingPrice) external {
+    function addProperty(string memory ownerName, string memory propertyDescription, uint askingPrice) external {
         
         //properties[msg.sender] means to access the property information from properties that is associate to the caller's address
         //associate a property info to be sold to an owner's address 
         properties[msg.sender] = propertyInfo({
             owner: msg.sender,//owner's address
             name: ownerName,//owner's name
-            description: ownerDescription, //description of the property
+            description: propertyDescription, //description of the property
             price: askingPrice, //asking price as demanded by owner
             status: PropertyStatus.Available //set the property status to Available
         });
@@ -68,7 +68,7 @@ contract DecentralisedProperty {
         require(!verifiedUsers[msg.sender], "You are already verified");
 
         //Check user's mininum balance, require 50ETH to be verified
-        require(address(this).balance >= 100 ether, "You need to have at least 100ETH to be a verified user");
+        require(address(this).balance >= 2 ether, "You need to have at least 2ETH to be a verified user");
 
         //Update the user to verified user
         verifiedUsers[msg.sender] = true;
