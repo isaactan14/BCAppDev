@@ -18,6 +18,8 @@ contract DecentralisedProperty {
         PropertyStatus status;
     }
 
+    //mapping (address => uint) public balances;
+
     //map all available properties for sale to an address belonging to the owner
     mapping(address => propertyInfo) public properties;
     
@@ -46,6 +48,13 @@ contract DecentralisedProperty {
         //verifiedUsers[msg.sender] = false; //initialization not needed as it is already false by default values
     }
 
+    // Check the balance of the caller's address
+    uint256 OwnerBalance = msg.sender.balance;
+
+    function getOwnerBalance() public view returns (uint256) {
+        return msg.sender.balance;
+    }
+
     //A function to add a property to the listing, taking in 3 arguments. Property owner can call this function.
     function addProperty(string memory ownerName, string memory propertyDescription, uint askingPrice) external {
         
@@ -67,8 +76,8 @@ contract DecentralisedProperty {
         //check if the user has been previously verified
         require(!verifiedUsers[msg.sender], "You are already verified");
 
-        //Check user's mininum balance, require 50ETH to be verified
-        require(address(this).balance >= 2 ether, "You need to have at least 2ETH to be a verified user");
+        //Check user's mininum balance, require 0 ETH to be verified
+        require(address(this).balance >= 0 ether, "You need to have at least 0 ETH to be a verified user");
 
         //Update the user to verified user
         verifiedUsers[msg.sender] = true;

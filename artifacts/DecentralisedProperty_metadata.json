@@ -171,6 +171,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "getOwnerBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -319,11 +332,11 @@
 	},
 	"sources": {
 		"DecentralisedProperty.sol": {
-			"keccak256": "0x75724d8572008e10868ac424cf2109e03cdb13abb76becc3d570b51d4f804892",
+			"keccak256": "0xc605a780a5f615571e140f2fa14e4b22f22287ae23d2a41b3b191a263840c122",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3b94cd6c98c01806354d0d2f175ed096e6ad1a258e73d1c9e919940a279ea196",
-				"dweb:/ipfs/QmPTPZRCQiVoagzhfLvfLSG24kyXi289SJjgeJysCaFppy"
+				"bzz-raw://6decf43cdd6414ca31f572837b2e888505d1fd0d4af94c2326ee154e1ba68d3b",
+				"dweb:/ipfs/QmU6LGmMdFpaPC9aj39pS5vyLV4ihJgwSSaqVKMhb5UKfg"
 			]
 		}
 	},
