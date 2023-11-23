@@ -62,12 +62,6 @@
 						"internalType": "address",
 						"name": "sellerAddress",
 						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "price",
-						"type": "uint256"
 					}
 				],
 				"name": "PropertyPending",
@@ -142,7 +136,7 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
+						"internalType": "address payable",
 						"name": "buyerAddress",
 						"type": "address"
 					},
@@ -154,7 +148,7 @@
 				],
 				"name": "confirmPurchase",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -162,7 +156,7 @@
 				"name": "contractOwner",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "address payable",
 						"name": "",
 						"type": "address"
 					}
@@ -250,7 +244,7 @@
 				],
 				"name": "requestPurchase",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -300,7 +294,7 @@
 				"inputs": [],
 				"name": "verifyIdentity",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			}
 		],
@@ -332,11 +326,11 @@
 	},
 	"sources": {
 		"DecentralisedProperty.sol": {
-			"keccak256": "0xc605a780a5f615571e140f2fa14e4b22f22287ae23d2a41b3b191a263840c122",
+			"keccak256": "0xcd48795f30583a252e1853a8a20c5e47a4596d442b42d95525191f3201e15a61",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6decf43cdd6414ca31f572837b2e888505d1fd0d4af94c2326ee154e1ba68d3b",
-				"dweb:/ipfs/QmU6LGmMdFpaPC9aj39pS5vyLV4ihJgwSSaqVKMhb5UKfg"
+				"bzz-raw://44ccf312c542aea17e7acb2aab44034129c8393828b0c0c24cceacca3b3e21be",
+				"dweb:/ipfs/QmWH4asS8DSc1bRDCJyz8DmhaUinKacJfPEuU3Vwevruvn"
 			]
 		}
 	},

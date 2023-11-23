@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 contract DecentralisedProperty {
 
     //contract owner
-    address public contractOwner;
+    address payable public contractOwner;
 
     //create an enumneration for custom data type
     enum PropertyStatus { Available, Pending, Sold }
@@ -36,7 +36,7 @@ contract DecentralisedProperty {
     event IdentityVerified(address indexed user);
 
     //a function to log each event when a seller requested to purchase a property waiting for approval from the owner. This is to block other's from requesting on the same property
-    event PropertyPending(address indexed buyer, address indexed sellerAddress, uint price);
+    event PropertyPending(address indexed buyer, address indexed sellerAddress);
 
     //a function to log each event when a property is sold
     event PropertySold(address indexed buyer, address indexed sellerAddress, uint price);
@@ -44,7 +44,7 @@ contract DecentralisedProperty {
 
 
     constructor() {
-        contractOwner=msg.sender;
+        contractOwner=payable (msg.sender);
         //verifiedUsers[msg.sender] = false; //initialization not needed as it is already false by default values
     }
 
@@ -72,12 +72,14 @@ contract DecentralisedProperty {
     }
 
     //A function to verify identity of purchaser
-    function verifyIdentity() external {
+    function verifyIdentity() external payable {
         //check if the user has been previously verified
         require(!verifiedUsers[msg.sender], "You are already verified");
-
-        //Check user's mininum balance, require 0 ETH to be verified
-        require(address(this).balance >= 0 ether, "You need to have at least 0 ETH to be a verified user");
+        
+         // Buyer must pay a small fee to contract owner to verify identity
+        require(msg.value >= 500, "Insufficient funds to verify identity");
+        //Transfer funds to contract owner
+        contractOwner.transfer(msg.value);
 
         //Update the user to verified user
         verifiedUsers[msg.sender] = true;
@@ -88,16 +90,15 @@ contract DecentralisedProperty {
 
 
     //A function to allow buyer to request purchase of a property, taking in arugment of the address of the owner
-    function requestPurchase(address insertOwnerAddress) external payable  {
+    function requestPurchase(address insertOwnerAddress) external {
         require(verifiedUsers[msg.sender]==true, "Complete Identity Verification first before proceeding"); //only verified user can call this function
         require(properties[insertOwnerAddress].status == PropertyStatus.Available, "Property is not available for purchase"); //only available property can be requested for purchase
-        require(msg.value >= properties[insertOwnerAddress].price, "Insufficient funds to complete purchase");//available fund must be greater or equals to the asking price
 
         //update property status to pending if request is successful
         properties[insertOwnerAddress].status = PropertyStatus.Pending; 
 
         //trigger the PropertyPending event
-        emit PropertyPending(msg.sender, insertOwnerAddress, msg.value);
+        emit PropertyPending(msg.sender, insertOwnerAddress);
     }
 
 
@@ -124,7 +125,7 @@ contract DecentralisedProperty {
     }
 
     //A function to allow buyer to confirm the purchase once approved and the funds will transferred from buyer to seller.
-    function confirmPurchase(address buyerAddress, address payable sellerAddress) external {
+    function confirmPurchase(address payable buyerAddress, address payable sellerAddress) external payable {
         require(msg.sender == buyerAddress, "You are not the buyer");//only the buyer can confirm the purchase
 
         // Transfer funds from buyer to the seller
